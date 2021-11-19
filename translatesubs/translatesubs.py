@@ -6,9 +6,12 @@ import sys
 from typing import List
 import os
 
-from .language_manager import LanguageManager
-from .subs_manager import SubsManager
-from .constants import AVAILABLE_TRANSLATORS, TRANSLATORS_PRINT, DEFAULT_SEPS_PRINT, USE_DEFAULT_SEPS, DEFAULT_SEPS, \
+import repackage
+repackage.up()
+
+from translatesubs.language_manager import LanguageManager
+from translatesubs.subs_manager import SubsManager
+from translatesubs.constants import AVAILABLE_TRANSLATORS, TRANSLATORS_PRINT, DEFAULT_SEPS_PRINT, USE_DEFAULT_SEPS, DEFAULT_SEPS, \
     SEP_MAX_LENGTH, SUB_FORMATS
 
 """
@@ -24,8 +27,10 @@ def main():
         usage='python translatesubs.py video.mkv output.ass --merge --to_lang fr')
     parser.add_argument('input', type=str,
                         help='Input file to translate; By default it is a subtitle file but if flag --video_file is'
-                             ' set, then this is video file name.')
-    parser.add_argument('output', type=str, help='Generated translated subtitle file.')
+                             ' set, then this is video file name.',
+                        nargs='?', default='../truncated.ass')
+    parser.add_argument('output', type=str, help='Generated translated subtitle file.',
+                        nargs='?', default='../truncated.auto.chs.ass')
     parser.add_argument('--encoding', default='utf-8', type=str,
                         help='Input file encoding, which defaults to "utf-8". To determine it automatically use "auto"')
     parser.add_argument('--to_lang', default='es', type=str, help='Language to which translate to.')
