@@ -57,6 +57,9 @@ class GoogleTransNew(ITranslator):
                 return translator.translate(text, lang_tgt=to_lang, pronounce=pronounce)
             except AttributeError:
                 logging.info(f'Provider "translate.google.{ending}" got blocked, trying another one...')
+            except Exception as e:
+                logging.info(f'Unexpected Error: {e}')
+                return ""
         exit('No more providers left to try, try updating the provider list or wait 1h until you get unblocked.')
 
     @staticmethod

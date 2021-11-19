@@ -82,6 +82,7 @@ def main():
                              'If these do not work, then only some good hack can help u :)')
     args = parser.parse_args()
 
+    args.logging = 0
     logging.basicConfig(stream=sys.stderr, level=args.logging)
     logging.info(f'Using logging level {logging.getLogger()} - lvl {logging.getLogger().level}.')
 
